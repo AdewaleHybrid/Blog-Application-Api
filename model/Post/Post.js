@@ -105,9 +105,9 @@ postSchema.pre(/^find/, function (next) {
     return daysAgo === 0 ? "Today" : daysAgo === 1 ? "Yesterday" : `${daysAgo}days ago`;
   });
   // DUPLICATE ID
-  // postSchema.virtual("id").get(function () {
-  //   return this._id.toHexString();
-  // });
+  postSchema.virtual("id").get(function () {
+    return this._id.toHexString();
+  });
 
   // =========== add the author to virtual field ============
   // postSchema.virtual("author").get(function () {
