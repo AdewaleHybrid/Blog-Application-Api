@@ -4,10 +4,10 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "run": "nodemon server.js",
-    "start": "node server.js"
+    "start": "nodemon server.js",
+    "test": "node server.js"
   },
-  "author": "",
+  "author": "Adewale Hybrid",
   "license": "ISC",
   "dependencies": {
     "bcryptjs": "^2.4.3",
