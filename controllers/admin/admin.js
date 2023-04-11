@@ -292,7 +292,7 @@ const adminUnfollowUserCtrl = async (req, res, next) => {
       }
     }
   } catch (error) {
-    res.json(error.message);
+    next(appErr(error.message));
   }
 };
 
@@ -358,8 +358,19 @@ const deleteAccountCtrl = async (req, res, next) => {
   }
 };
 
+// ADMIN FETCH NUMBER OF USERS
+const numberOfUsersCtrl = async (req, res, next) => {
+  try {
+    const numberOfUsers = await User.countDocuments();
+    return res.json({ status: "Success", "total users": numberOfUsers });
+  } catch (error) {
+    next(appErr(error.message, 500));
+  }
+};
+
 // EXPORT ALL MODULES
 module.exports = {
+  numberOfUsersCtrl,
   adminFollowingUserCtrl,
   deleteAccountCtrl,
   adminProfileCtrl,

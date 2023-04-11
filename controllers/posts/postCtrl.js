@@ -36,7 +36,7 @@ const postCreateCtrl = async (req, res, next) => {
 // ALL POSTS CONTROLLER
 const postsCtrl = async (req, res, next) => {
   try {
-    const posts = await Post.find().populate("user");
+    const posts = await Post.find().populate("user").populate("category" , "title");
     // check if the logged in user is being blocked by the post owner
     const filteredPosts = posts.filter((post) => {
       const blockedUsers = post.user.blocked;

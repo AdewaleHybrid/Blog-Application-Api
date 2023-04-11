@@ -9,7 +9,7 @@ const dbConnect = async () => {
     console.log("DB connected successfully");
   } catch (error) {
     console.log(error.message);
-    process.exit(1);
+//    process.exit(1);
   }
 };
 
