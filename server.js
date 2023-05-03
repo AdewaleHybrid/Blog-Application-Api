@@ -6,7 +6,7 @@ const app = express();
 const dotenv = require("dotenv").config();
 require("./config/dbConnect");
 
-// ROUTRES MODULES
+// ROUTER MODULES
 const adminRouter = require("./routes/admins/adminRoutes");
 const userRouter = require("./routes/users/userRoutes");
 const postRouter = require("./routes/posts/postRoutes");
@@ -17,11 +17,24 @@ const commentRouter = require("./routes/comments/commentRoutes");
 
 // Error handler middleware
 const globalErrHandler = require("./middlewares/globalErrHandler");
+const Post = require("./model/Post/Post");
 
 // Middleware configuration
 app.use(express.json()); // Pass Incoming Json Data.
 
 // ROUTES MIDDLEWARE -------
+//HOME ROUTE
+app.get("/", async (req, res) => {
+  try {
+    const posts = await Post.find();
+    res.json({
+      status: "success",
+      data: posts,
+    });
+  } catch (error) {
+    res.json(error);
+  }
+});
 app.use("/api/v1/admins/", adminRouter); // ADMIN ROUTES
 app.use("/api/v1/users/", userRouter); // USERS ROUTES
 app.use("/api/v1/posts/", postRouter); // POSTS ROUTES

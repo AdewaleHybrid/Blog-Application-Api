@@ -69,12 +69,12 @@ const adminLoginCtrl = async (req, res, next) => {
 // GET: ADMIN FECTH ALL USERS CONTROLLER
 const allUsers = async (req, res, next) => {
   try {
-    // Get all admins
-    const admins = await User.find();
-
+    // Get all users
+    const users = await User.find();
     res.json({
       status: "Success",
-      data: admins,
+      result: users.length,
+      data: { users },
     });
   } catch (error) {
     return next(appErr(error.message));
